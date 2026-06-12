@@ -1,1 +1,115 @@
+*{ul{.imagem-agrinho{
+    width: 100%;
+    max-width: 500px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
 
+.imagem-agrinho:hover{
+    transform: scale(1.03);
+    transition: 0.3s;
+}
+    margin-top:10px;
+    padding-left:20px;
+}
+
+li{
+    margin:8px 0;
+}
+
+.galeria{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.galeria img{
+    width:250px;
+    height:180px;
+    object-fit:cover;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.galeria img:hover{
+    transform:scale(1.05);
+}
+
+#jogo{
+    width:80px;
+    height:80px;
+    background:#90ee90;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:40px;
+    border-radius:50%;
+    cursor:pointer;
+    position:relative;
+    margin-top:20px;
+}
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background: #f0f8f0;
+    color:#333;
+}
+
+header{
+    background:#2e8b57;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+main{
+    max-width:900px;
+    margin:20px auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    margin-bottom:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+h2{
+    color:#2e8b57;
+    margin-bottom:10px;
+}
+
+button{
+    background:#2e8b57;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    margin:5px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#246b45;
+}
+
+#resultado{
+    margin-top:15px;
+    font-weight:bold;
+}
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#2e8b57;
+    color:white;
+}
