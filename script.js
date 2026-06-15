@@ -1,104 +1,80 @@
-/* ===========================
-   NAVEGAÇÃO POR ABAS
-=========================== */
-const tabBtns = document.querySelectorAll('.tab-btn');
-const sections = document.querySelectorAll('.section');
-
-tabBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const alvo = btn.dataset.section;
-
-    tabBtns.forEach(b => b.classList.remove('active'));
-    sections.forEach(s => s.classList.remove('active'));
-
-    btn.classList.add('active');
-    document.getElementById(alvo).classList.add('active');
-  });
-});
-
-/* ===========================
-   CURIOSIDADES
-=========================== */
+// Lista de curiosidades do Agro sustentável
 const curiosidades = [
-  "🌽 O Brasil está entre os maiores produtores agrícolas do mundo, exportando para mais de 100 países.",
-  "🐝 As abelhas são responsáveis pela polinização de cerca de 70% das culturas alimentares do planeta.",
-  "🌳 A agricultura sustentável ajuda a preservar os recursos naturais para as próximas gerações.",
-  "🚜 A tecnologia no campo pode aumentar a produtividade em até 30% e reduzir o desperdício de insumos.",
-  "💧 A irrigação por gotejamento economiza até 50% de água em comparação aos métodos tradicionais.",
-  "🌱 O Paraná é um dos estados com maior produção agrícola do Brasil, especialmente de soja e milho."
+    "🌽 O Brasil está entre os maiores produtores agrícolas do mundo.",
+    "🐝 As abelhas são responsáveis pela polinização de muitas culturas importantes.",
+    "🌳 A agricultura sustentável ajuda a preservar os recursos naturais para o futuro.",
+    "🚜 A tecnologia no campo aumenta a produtividade e reduz drasticamente os desperdícios.",
+    "💧 A irrigação eficiente por gotejamento economiza água e melhora a saúde da planta.",
+    "🌾 O Paraná é um dos maiores produtores agrícolas do Brasil.",
+    "🌱 Solos saudáveis são a base de uma agricultura sustentável.",
+    "♻️ A reciclagem de resíduos agrícolas reduz a poluição ambiental."
 ];
 
-let ultimaCuriosidade = -1;
-
+// Função para sortear curiosidades
 function mostrarCuriosidade() {
-  let sorteio;
-  do {
-    sorteio = Math.floor(Math.random() * curiosidades.length);
-  } while (sorteio === ultimaCuriosidade);
-
-  ultimaCuriosidade = sorteio;
-  document.getElementById('curiosidade-texto').textContent = curiosidades[sorteio];
+    const sorteio = Math.floor(Math.random() * curiosidades.length);
+    const elemento = document.getElementById("curiosidade");
+    
+    // Anima a troca de texto
+    elemento.style.opacity = "0";
+    
+    setTimeout(() => {
+        elemento.textContent = curiosidades[sorteio];
+        elemento.style.opacity = "1";
+    }, 200);
 }
 
-/* ===========================
-   VERDADEIRO OU FALSO
-=========================== */
+// Lógica do Verdadeiro ou Falso
 function responderVF(resposta) {
-  const campo = document.getElementById('vf-resultado');
-
-  if (resposta === true) {
-    campo.textContent = '✅ Correto! Sem as abelhas, nossa biodiversidade e produção de alimentos estariam em sério risco.';
-    campo.className = 'quiz-resultado certo';
-  } else {
-    campo.textContent = '❌ Incorreto. As abelhas são vitais para a polinização de grande parte dos nossos alimentos!';
-    campo.className = 'quiz-resultado errado';
-  }
+    const campoVf = document.getElementById("vf");
+    
+    if (resposta === true) {
+        campoVf.textContent = "✅ Exato! Sem as abelhas, nossa biodiversidade e produção de alimentos estariam em risco.";
+        campoVf.className = "certo";
+    } else {
+        campoVf.textContent = "❌ Incorreto. As abelhas são vitais para a polinização!";
+        campoVf.className = "errado";
+    }
 }
 
-/* ===========================
-   QUIZ
-=========================== */
+// Lógica do Quiz
 function verificarResposta(opcao) {
-  const resultado = document.getElementById('quiz-resultado');
-
-  if (opcao === 'b') {
-    resultado.textContent = '✅ Correto! Sensores e automação evitam o desperdício de água e insumos, tornando o campo mais sustentável.';
-    resultado.className = 'quiz-resultado certo';
-  } else {
-    resultado.textContent = '❌ Incorreto. Tente novamente: qual alternativa foca em eficiência e economia de recursos?';
-    resultado.className = 'quiz-resultado errado';
-  }
+    const resultado = document.getElementById("resultado");
+    
+    if (opcao === "b") {
+        resultado.textContent = "✅ Correto! Sensores e automação evitam o desperdício de água e insumos.";
+        resultado.className = "certo";
+    } else {
+        resultado.textContent = "❌ Incorreto! Tente analisar qual alternativa foca em eficiência e economia.";
+        resultado.className = "errado";
+    }
 }
 
-/* ===========================
-   MINIGAME - COLETAR ALIMENTOS
-=========================== */
+// Lógica do minigame de clicar nos alimentos
 let pontuacao = 0;
-const frutas = ['🍎', '🥦', '🌽', '🍊', '🍓', '🥕', '🍋', '🫐'];
+const frutas = ["🍎", "🥦", "🌽", "🍊", "🍓", "🥕", "🍋", "🥬"];
 
 function coletarAlimento() {
-  pontuacao++;
-  document.getElementById('pontos').textContent = pontuacao;
-
-  const jogoEl = document.getElementById('jogo');
-  let novaFruta;
-  do {
-    novaFruta = frutas[Math.floor(Math.random() * frutas.length)];
-  } while (novaFruta === jogoEl.textContent);
-
-  jogoEl.textContent = novaFruta;
-
-  // Feedback visual de clique
-  jogoEl.style.background = '#b2dfcc';
-  setTimeout(() => {
-    jogoEl.style.background = '';
-  }, 150);
+    pontuacao++;
+    document.getElementById("pontos").textContent = pontuacao;
+    
+    // Altera o alimento de forma aleatória a cada clique
+    const novaFruta = frutas[Math.floor(Math.random() * frutas.length)];
+    const jogo = document.getElementById("jogo");
+    
+    jogo.textContent = novaFruta;
+    
+    // Efeito de feedback visual
+    jogo.style.transform = "scale(0.9) rotate(-5deg)";
+    setTimeout(() => {
+        jogo.style.transform = "";
+    }, 100);
 }
 
-// Suporte a teclado no minigame
-document.getElementById('jogo').addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') {
-    e.preventDefault();
-    coletarAlimento();
-  }
+// Adiciona transição suave ao elemento de curiosidade
+document.addEventListener("DOMContentLoaded", function() {
+    const curiosidadeEl = document.getElementById("curiosidade");
+    if (curiosidadeEl) {
+        curiosidadeEl.style.transition = "opacity 0.3s ease";
+    }
 });
